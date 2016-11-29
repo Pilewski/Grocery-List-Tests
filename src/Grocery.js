@@ -17,6 +17,10 @@ const Grocery = ({ name, quantity, notes, purchased, starred, onPurchase, onStar
         {starred ? 'Unstar' : 'Star'}
       </button>
 
+      <button className="Grocery-remove">
+        Remove
+      </button>
+
     </article>
   );
 };
