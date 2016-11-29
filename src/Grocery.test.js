@@ -75,7 +75,7 @@ describe('Grocery', () => {
   });
 
   it('should have a text of "Purchase" if purchased is false', () => {
-    const wrapper = shallow(<Grocery name="Bananas" purchased={undefined}/>)
+    const wrapper = shallow(<Grocery name="Bananas" purchased={false}/>)
 
     expect(wrapper.find('.Grocery-purchase').text()).toEqual('Purchase')
   });
@@ -87,7 +87,7 @@ describe('Grocery', () => {
   });
 
   it('should have a text of "Star" if starred is false', () => {
-    const wrapper = shallow(<Grocery name="Bananas" starred={undefined}/>)
+    const wrapper = shallow(<Grocery name="Bananas" starred={false}/>)
 
     expect(wrapper.find('.Grocery-starred').text()).toEqual('Star')
   });
@@ -96,6 +96,54 @@ describe('Grocery', () => {
     const wrapper = shallow(<Grocery name="Bananas" starred={true}/>)
 
     expect(wrapper.find('.Grocery-starred').text()).toEqual('Unstar')
+  });
+
+  it('should call the onPurchase prop when the Purchase button is clicked', () => {
+    const onPurchaseMock = jest.fn();
+
+    const wrapper = mount(
+      <Grocery
+        name="Bananas"
+        purchased={true}
+        onPurchase={onPurchaseMock}
+      />
+    );
+
+    wrapper.find('.Grocery-purchase').simulate('click');
+
+    expect(onPurchaseMock).toBeCalled();
+  });
+
+  it('should call the onStar prop when the Star button is clicked', () => {
+    const onStarMock = jest.fn()
+
+    const wrapper = mount(
+      <Grocery
+        name="Bananas"
+        purchased={true}
+        onStar={onStarMock}
+      />
+    )
+
+    wrapper.find('.Grocery-starred').simulate('click')
+
+    expect(onStarMock).toBeCalled()
+  });
+
+  it('should call the onDelete prop when the Remove button is clicked', () => {
+    const onDeleteMock = jest.fn()
+
+    const wrapper = mount(
+      <Grocery
+        name="Bananas"
+        purchased={true}
+        onDelete={onDeleteMock}
+      />
+    )
+
+    wrapper.find('.Grocery-remove').simulate('click')
+
+    expect(onDeleteMock).toBeCalled()
   });
 
 });
