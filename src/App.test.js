@@ -1,6 +1,10 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { shallow, mount } from 'enzyme';
+
 import App from './App';
 
-it('renders without crashing', () => {
+describe('App', () => {
+  it('renders an App', () => {
+    true
+  });
 });
